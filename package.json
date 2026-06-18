@@ -9,6 +9,7 @@
     "email": "sean@headzoo.io"
   },
   "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "NO_SANDBOX=1 electron-vite dev",
     "build": "electron-vite build",
