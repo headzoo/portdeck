@@ -66,6 +66,11 @@
     "deb": {
       "afterInstall": "build/linux-after-install.sh",
       "afterRemove": "build/linux-after-remove.sh"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "headzoo",
+      "repo": "portdeck"
     }
   }
 }
