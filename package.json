@@ -1,0 +1,71 @@
+{
+  "name": "portdeck",
+  "version": "0.1.0",
+  "description": "Local developer utility for discovering services, ports, and exposure risks",
+  "main": "./out/main/index.js",
+  "homepage": "https://github.com/headzoo/portdeck",
+  "author": {
+    "name": "Sean Hickey",
+    "email": "sean@headzoo.io"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "NO_SANDBOX=1 electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "NO_SANDBOX=1 electron-vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "package": "electron-vite build && electron-builder",
+    "postinstall": "electron-builder install-app-deps && node node_modules/electron/install.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "better-sqlite3",
+      "esbuild"
+    ]
+  },
+  "build": {
+    "appId": "com.portdeck.app",
+    "productName": "Portdeck",
+    "directories": {
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development",
+      "maintainer": "Portdeck <portdeck@local.dev>",
+      "executableArgs": [
+        "--no-sandbox"
+      ]
+    },
+    "deb": {
+      "afterInstall": "build/linux-after-install.sh",
+      "afterRemove": "build/linux-after-remove.sh"
+    }
+  }
+}
